@@ -1,0 +1,40 @@
+<div class="container mt-2">
+      <div class="card">
+        <ng-container *ngIf="CustomeraccountsObservable | async as CustomerAcccounts">
+        <div class="card-header">Accounts</div>
+        <div class="card-body">
+            <div class="mb-2">
+              <label>Customer ID :</label>
+              <label><strong>{{CustomerAcccounts.id}}</strong></label>
+            </div>
+            <div class="mb-2">
+              <label>Name :</label>
+              <label><strong>{{CustomerAcccounts.name}}</strong></label>
+            </div>
+            <table class="table">
+              <thead>
+              <th>ID</th><th>Type</th><th>Date</th><th>Amount</th>
+              </thead>
+              <tbody>
+              <tr *ngFor="let op of CustomerAcccounts.customerAccountsDTO">
+                <td>{{op.id}}</td>
+                <td>{{op.type}}</td>
+                <td>{{op.createdAt}}</td>
+                <td>{{op.balance}}</td>
+              </tr>
+              </tbody>
+            </table>
+          <ng-template #failureOrLoading>
+            <ng-container *ngIf="errorMessage; else Loading">
+              <div class="text-danger">
+                {{errorMessage}}
+              </div>
+            </ng-container>
+            <ng-template #Loading>
+              Loading.....
+            </ng-template>
+          </ng-template>
+        </div>
+        </ng-container>
+      </div>
+</div>
